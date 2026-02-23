@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>星露谷美食抽选机 - 终极联动版</title>
+    <title>星露谷美食抽选机</title>
     <style>
         :root {
             --sv-border: #5d2c28; 
@@ -153,6 +153,13 @@
     </div>
 
     <button class="draw-btn" id="start-btn">决定吧！</button>
+<div style="display:none;">
+    <script>
+        for (let i = 1; i <= 16; i++) {
+            new Image().src = `food${i}.jpg`;
+        }
+    </script>
+</div>
 
 <script>
  const foods = [
@@ -195,8 +202,9 @@
 
         function roll() {
             step++;
-            const randomIndex = Math.floor(Math.random() * foods.length);
-            foodImg.src = `food${randomIndex + 1}.jpg`;
+            // 修改 roll 函数里的这一行
+const randomIndex = Math.floor(Math.random() * foods.length);
+foodImg.src = `food${randomIndex + 1}.jpg?t=${new Date().getTime()}`; // 加个时间戳强制刷新
             foodName.innerText = foods[randomIndex];
 
             if (step < totalSteps) {
